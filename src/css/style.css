@@ -1,7 +1,7 @@
 body {
   background-color: rgb(18, 18, 20);
   color: white;
-  font-family: 'Secular One', sans-serif;
+  font-family: "Secular One", sans-serif;
   font-size: large;
 
   margin: 0; /* remove margin */
@@ -60,14 +60,15 @@ body {
   margin-top: 3%;
   justify-content: center;
   display: flex;
-  padding: 5%;
+  padding-top: 2%;
+  padding-right: 5%;
+  padding-left: 5%;
   transition-delay: 2s;
 }
 
 .word-grid table {
   border-spacing: 7.5px 7.5px;
   font-size: x-large;
-  
 }
 
 .word-grid td {
@@ -76,12 +77,25 @@ body {
   text-align: center;
   border-radius: 10%;
   border: 2px solid rgb(78, 75, 75);
-  background-color: rgb(29, 29, 29); 
+  background-color: rgb(29, 29, 29);
+}
+
+.info {
+  display: block;
+  text-align: center;
+  padding-top: 1%;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transition: 0.25s all ease-in-out;
+  -moz-transition: 0.25s all ease-in-out;
+  -o-transition: 0.25s all ease-in-out;
+  transition: 0.25s all ease-in-out;
 }
 
 .keyboard {
-  margin: auto;
-  padding: 5%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-top: 2%;
 }
 
 .keyboard-button {
@@ -102,11 +116,15 @@ body {
   }
 
   .keyboard {
-    padding-top: 10%;
+    padding-top: 5%;
   }
 
   .keyboard-button {
     padding: 2.5% 2.5%;
+  }
+
+  .info {
+    padding-top: 5%;
   }
 }
 
