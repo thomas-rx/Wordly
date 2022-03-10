@@ -12,6 +12,7 @@
   "dependencies": {
     "buffer": "^6.0.3",
     "confetti-js": "^0.0.18",
+    "read-env": "^2.0.0",
     "seedrandom": "^3.0.5"
   },
   "devDependencies": {

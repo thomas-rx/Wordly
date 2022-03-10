@@ -1,6 +1,7 @@
 // TODO : Système de sauvegarde
 // TODO : Système de chargement
 import ConfettiGenerator from "confetti-js";
+import dotenv from "dotenv";
 
 const animationDuration = 500;
 
@@ -250,7 +251,7 @@ class Game {
 window.addEventListener('load', (event) => {
     window.game = new Game(window.dailyWord.getWord());
     document.getElementById("table").innerHTML = window.game.getWordGrid();
-
+    document.getElementById("build_id").innerHTML =  "Build:    " + process.env.COMMIT_REF;
     //if (window.game.getSaveGame() == '') {
     //    window.game.restoreGame();
     //}
