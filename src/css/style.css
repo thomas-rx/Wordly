@@ -126,8 +126,11 @@ body {
   .info {
     padding-top: 5%;
   }
-}
 
+  footer {
+    padding-top: 3%;
+  }
+}
 .keyboard-button:hover {
   color: rgb(97, 97, 97);
 }
@@ -144,7 +147,7 @@ canvas {
 
 footer {
   color: rgb(105, 105, 105);
-  padding-top: 3%;
+  padding-top: 1%;
   text-align: center;
   font-size: xx-small;
 }
