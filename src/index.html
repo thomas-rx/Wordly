@@ -1,0 +1,86 @@
+<script src="js/game.js"></script>
+<script src="js/keyboard.js"></script>
+<script src="js/word.js"></script>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wordly</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+</head>
+
+<header>
+    <canvas id="canvas-confetti"></canvas>
+    <div class="header">
+        <div class="header-left">
+            <div class="box">
+                <em class="fa-solid fa-gear fa-xl"></em>
+            </div>
+        </div>
+        <h1>Wordly</h1>
+        <div class="header-right">
+            <div class="box">
+                <a><em class="fa-solid fa-chart-area fa-xl"></em></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+
+    <div class="word-grid">
+        <div id="table"></div>
+    </div>
+
+    <div class="keyboard">
+        <div class="keyboard-row">
+            <button class="keyboard-button" id="a">A</button>
+            <button class="keyboard-button" id="z">Z</button>
+            <button class="keyboard-button" id="e">E</button>
+            <button class="keyboard-button" id="r">R</button>
+            <button class="keyboard-button" id="t">T</button>
+            <button class="keyboard-button" id="y">Y</button>
+            <button class="keyboard-button" id="u">U</button>
+            <button class="keyboard-button" id="i">I</button>
+            <button class="keyboard-button" id="o">O</button>
+            <button class="keyboard-button" id="p">P</button>
+        </div>
+        <div class="keyboard-row">
+            <button class="keyboard-button" id="q">Q</button>
+            <button class="keyboard-button" id="s">S</button>
+            <button class="keyboard-button" id="d">D</button>
+            <button class="keyboard-button" id="f">F</button>
+            <button class="keyboard-button" id="g">G</button>
+            <button class="keyboard-button" id="h">H</button>
+            <button class="keyboard-button" id="j">J</button>
+            <button class="keyboard-button" id="k">K</button>
+            <button class="keyboard-button" id="l">L</button>
+            <button class="keyboard-button" id="m">M</button>
+        </div>
+        <div class="keyboard-row">
+            <button class="keyboard-button" id="enter">↲</button>
+            <button class="keyboard-button" id="w">W</button>
+            <button class="keyboard-button" id="x">X</button>
+            <button class="keyboard-button" id="c">C</button>
+            <button class="keyboard-button" id="v">V</button>
+            <button class="keyboard-button" id="b">B</button>
+            <button class="keyboard-button" id="n">N</button>
+            <button class="keyboard-button" id="backspace">⌫</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
