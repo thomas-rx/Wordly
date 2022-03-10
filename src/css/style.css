@@ -60,7 +60,7 @@ body {
   margin-top: 3%;
   justify-content: center;
   display: flex;
-  padding-top: 2%;
+  padding: 5%;
   transition-delay: 2s;
 }
 
@@ -80,8 +80,8 @@ body {
 }
 
 .keyboard {
-  padding-top: 5%;
   margin: auto;
+  padding: 5%;
 }
 
 .keyboard-button {
