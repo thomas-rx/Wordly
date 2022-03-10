@@ -2,17 +2,25 @@ import seedrandom from 'seedrandom';
 import fs from 'fs';
 import { Buffer } from 'buffer';
 
-var date = new Date().toISOString().slice(0, 10);
-var dailySeed = parseInt(seedrandom(date).quick() * 2000);
+class DailyWord {
+    constructor() {
+    this.date = new Date().toISOString().slice(0, 10);
+    this.seed = parseInt(seedrandom(this.date).quick() * 2000);
+    this.wordList = fs.readFileSync('src/data/mots.txt').toString().split('\n')
+    }
 
-var file= fs.readFileSync('src/data/mots.txt').toString().split('\n')
-var word = file[dailySeed]
+    getWord() {
+        var w = this.wordList[this.seed];
+        while (w.length != 5 || !w.endsWith("ER")) {
+            this.seed += 1000;
+            w = this.wordList[this.seed];
+        }
+        return w.toLowerCase();
+    }        
 
-while (word.length != 5 || !word.endsWith("ER")) {
-    dailySeed = dailySeed + 1000;
-    word = file[dailySeed]
+    getWordList() {
+        return this.wordList;
+    }
 }
 
-window.word = word;
-window.wordList = file;
-
+window.dailyWord = new DailyWord();

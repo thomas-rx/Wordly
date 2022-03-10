@@ -36,7 +36,7 @@ window.addEventListener('load', (event) => {
                 if (key.id == 'backspace') {
                     window.game.delete();
                 } else if (key.id == 'enter' && window.game.proposition.length == window.game.word.length) {
-                    window.game.verifyProposition();
+                    window.game.verify();
                 } else if (key.id != 'enter' && key.id != 'backspace') {
                     window.game.add(key.id);
                 }

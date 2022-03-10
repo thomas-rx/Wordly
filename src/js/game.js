@@ -9,17 +9,14 @@ class Game {
         this.word = word;
         this.letters = word.split('');
         this.gameStatus = 0; // 0 = playing, 1 = won, 2 = lost
-
         this.maxTrys = 6;
         this.try = 1;
-
         this.proposition = [];
-
         this.gameState = [];
         this.cell = 1;
     }
 
-    generateTable() {
+    getWordGrid() {
         let html = '<table>';
         let id = 1;
         for (let x = 0; x < this.maxTrys; x++) {
@@ -89,22 +86,22 @@ class Game {
         return (this.word.length * this.try) - this.word.length;
     }
 
-    lockKeyboardKey(id) {
+    setKeyOff(id) {
         let btn = document.getElementById(id);
         btn.style.backgroundColor = '#5b5b5b';
     }
 
-    unlockKeyboardKey(id) {
+    setKeyOn(id) {
         let btn = document.getElementById(id);
         btn.style.backgroundColor = '#ffffff';
     }
 
-    hideKeyboard() {
+    setKeyboardOff() {
         document.getElementsByClassName('keyboard')[0].style.display = 'none';
     }
 
-    verifyProposition() {
-        if (this.proposition.length == this.word.length && window.wordList.includes(this.proposition.join('').toUpperCase())) {
+    verify() {
+        if (this.proposition.length == this.word.length && window.dailyWord.getWordList().includes(this.proposition.join('').toUpperCase())) {
             var word = this.letters.slice()
             var proposition = this.proposition.slice();
 
@@ -127,7 +124,7 @@ class Game {
                     setTimeout(() => {
                         this.setCellColor(id + 1, '#1D1D1D');
                     }, animationDuration * i);
-                    this.lockKeyboardKey(this.proposition[i]);
+                    this.setKeyOff(this.proposition[i]);
                     proposition[i] = '🟥';
 
                 }
@@ -160,14 +157,14 @@ class Game {
                 this.gameStatus = 1;
 
                 setTimeout(() => {
-                    this.hideKeyboard();
+                    this.setKeyboardOff();
                     this.showConfetti();
                 }, animationDuration * this.word.length);
 
                 //this.saveGame()
 
             } else if (this.try == this.maxTrys) {
-                this.hideKeyboard();
+                this.setKeyboardOff();
 
             } else {
                 setTimeout(() => {
@@ -244,16 +241,16 @@ class Game {
     }
 
     showConfetti() {
-        var confettiSettings = { target: 'canvas-confetti', size: 1, start_from_edge: true, respawn: true, clock: 20, max: 150 / this.try, rotate: true };
+        var confettiSettings = { target: 'canvas-confetti', size: 1, start_from_edge: true, respawn: false, clock: 20, max: 150 / this.try, rotate: true };
         var confetti = new ConfettiGenerator(confettiSettings);
         confetti.render();
     }
 }
 
 window.addEventListener('load', (event) => {
-    window.game = new Game(window.word.toLowerCase());
-    document.getElementById("table").innerHTML = window.game.generateTable();
-    console.log(window.game.word);
+    window.game = new Game(window.dailyWord.getWord());
+    document.getElementById("table").innerHTML = window.game.getWordGrid();
+
     //if (window.game.getSaveGame() == '') {
     //    window.game.restoreGame();
     //}
