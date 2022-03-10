@@ -2,7 +2,7 @@
 // TODO : Système de chargement
 import ConfettiGenerator from "confetti-js";
 
-const animationDuration = 1200;
+const animationDuration = 500;
 
 class Game {
     constructor(word) {
@@ -10,7 +10,7 @@ class Game {
         this.letters = word.split('');
         this.gameStatus = 0; // 0 = playing, 1 = won, 2 = lost
 
-        this.maxTrys = 5;
+        this.maxTrys = 6;
         this.try = 1;
 
         this.proposition = [];
@@ -57,15 +57,15 @@ class Game {
     setCellColor(cell_id, color,) {
         if (cell_id > 0) {
             let e = document.getElementById(cell_id);
-            e.style.transform = 'rotateX(-180deg)';
             e.animate([
-                { transform: 'rotateX(360deg)' }
+                { transform: 'rotateX(0.5turn)' },
+                { transform: 'rotateX(1turn)' }
             ],
                 { duration: animationDuration });
             setTimeout(() => {
-                e.style.transform = 'rotateX(360deg)';
                 e.style.backgroundColor = color;
             }, animationDuration);
+
         }
     }
 
@@ -104,8 +104,7 @@ class Game {
     }
 
     verifyProposition() {
-        if (this.proposition.length == this.word.length) {
-
+        if (this.proposition.length == this.word.length && window.wordList.includes(this.proposition.join('').toUpperCase())) {
             var word = this.letters.slice()
             var proposition = this.proposition.slice();
 
@@ -113,11 +112,11 @@ class Game {
                 let id = this.getFirstCellID() + i;
 
                 if (this.word[i] == this.proposition[i]) { // Verifying correct letters
-                    
+
                     setTimeout(() => {
                         this.setCellColor(id + 1, '#228b22');
                     }, animationDuration * i);
-                    
+
                     proposition[i] = '🟩';
                     word[i] = "🟩";
 
@@ -125,6 +124,9 @@ class Game {
                     continue;
 
                 } else { // Incorrect letters
+                    setTimeout(() => {
+                        this.setCellColor(id + 1, '#1D1D1D');
+                    }, animationDuration * i);
                     this.lockKeyboardKey(this.proposition[i]);
                     proposition[i] = '🟥';
 
@@ -143,6 +145,9 @@ class Game {
                         proposition[parseInt(x)] = '🟧';
 
                     } else {
+                        setTimeout(() => {
+                            this.setCellColor(id + 1, '#1D1D1D');
+                        }, animationDuration * i);
                         proposition[parseInt(x)] = '🟥';
                     }
                 }
@@ -159,7 +164,7 @@ class Game {
                     this.showConfetti();
                 }, animationDuration * this.word.length);
 
-                this.saveGame()
+                //this.saveGame()
 
             } else if (this.try == this.maxTrys) {
                 this.hideKeyboard();
@@ -169,6 +174,15 @@ class Game {
                     this.newRound();
                 }, 1500 * this.word.length);
             }
+
+        } else {
+            let e = document.getElementsByClassName('info')[0];
+            e.innerHTML = "Ce mot n'est pas dans notre dictionnaire.";
+            e.style.opacity = 1;
+
+            setTimeout(() => {
+                e.style.opacity = 0;
+            }, 3000);
         }
     }
 
@@ -230,16 +244,16 @@ class Game {
     }
 
     showConfetti() {
-        var confettiSettings = { target: 'canvas-confetti', size: 2, start_from_edge: true, respawn: true, clock: 20, max: 150 / this.try };
+        var confettiSettings = { target: 'canvas-confetti', size: 1, start_from_edge: true, respawn: true, clock: 20, max: 150 / this.try, rotate: true };
         var confetti = new ConfettiGenerator(confettiSettings);
         confetti.render();
     }
 }
 
 window.addEventListener('load', (event) => {
-    window.game = new Game(window.word);
+    window.game = new Game(window.word.toLowerCase());
     document.getElementById("table").innerHTML = window.game.generateTable();
-    console.log(window.game);
+    console.log(window.game.word);
     //if (window.game.getSaveGame() == '') {
     //    window.game.restoreGame();
     //}
