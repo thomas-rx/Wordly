@@ -30,10 +30,8 @@ window.addEventListener('load', (event) => {
         document.getElementById("enter"),
     ];
 
-    console.log(keys)
     for (let key of keys) {
         key.addEventListener("click", function () {
-            // console.log("⌨️ Key pressed: " + key.id);
             if (window.game.gameStatus == 0 && window.game.try <= window.game.maxTrys) {
                 if (key.id == 'backspace') {
                     window.game.delete();
