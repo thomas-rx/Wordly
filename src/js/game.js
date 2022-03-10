@@ -2,6 +2,8 @@
 // TODO : Système de chargement
 import ConfettiGenerator from "confetti-js";
 
+const animationDuration = 1200;
+
 class Game {
     constructor(word) {
         this.word = word;
@@ -59,11 +61,11 @@ class Game {
             e.animate([
                 { transform: 'rotateX(360deg)' }
             ],
-                { duration: 2500 });
+                { duration: animationDuration });
             setTimeout(() => {
                 e.style.transform = 'rotateX(360deg)';
                 e.style.backgroundColor = color;
-            }, 2000);
+            }, animationDuration);
         }
     }
 
@@ -114,7 +116,7 @@ class Game {
                     
                     setTimeout(() => {
                         this.setCellColor(id + 1, '#228b22');
-                    }, 1000 * i);
+                    }, animationDuration * i);
                     
                     proposition[i] = '🟩';
                     word[i] = "🟩";
@@ -136,7 +138,7 @@ class Game {
                     if (word.includes(proposition[x]) && proposition.includes(proposition[x])) {
                         setTimeout(() => {
                             this.setCellColor(this.getFirstCellID() + parseInt(x) + 1, '#e9692c');
-                        }, 1000 * x);
+                        }, animationDuration * x);
 
                         proposition[parseInt(x)] = '🟧';
 
@@ -155,7 +157,7 @@ class Game {
                 setTimeout(() => {
                     this.hideKeyboard();
                     this.showConfetti();
-                }, 1500 * this.word.length);
+                }, animationDuration * this.word.length);
 
                 this.saveGame()
 
