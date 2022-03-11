@@ -11,8 +11,8 @@ class DailyWord {
 
     getWord() {
         var w = this.wordList[this.seed];
-        while (w.length != 5 || !w.endsWith("ER")) {
-            this.seed += 1000;
+        while (!w.endsWith("ER") || ( w.length >= 4 && w.length <= 6)) {
+            this.seed += 2;
             w = this.wordList[this.seed];
         }
         return w.toLowerCase();
