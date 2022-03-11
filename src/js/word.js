@@ -6,7 +6,7 @@ class DailyWord {
     constructor() {
         this.date = new Date().toISOString().slice(0, 10);
         this.seed = parseInt(seedrandom(this.date).quick() * 10000);
-        this.wordList = fs.readFileSync('../data/mots.txt').toString().split('\n')
+        this.wordList = fs.readFileSync('src/data/mots.txt').toString().split('\n')
     }
 
     getWord() {
@@ -32,5 +32,4 @@ class DailyWord {
     }
 }
 
-//window.dailyWord = new DailyWord();
-new DailyWord().getWord();
+window.dailyWord = new DailyWord();
