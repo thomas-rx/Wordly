@@ -13,7 +13,6 @@
     })();
   </script>
   <!-- End Matomo Code -->
-
   
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,31 +39,38 @@
     <meta property="og:type" content="website">
 
     <title>Wordly</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+
+    <script src="js/keyboard.js"></script>
+    <script src="js/word.js"></script>
+    <script src="js/game.js"></script>
 </head>
 
 <header>
     <canvas id="canvas-confetti"></canvas>
     <div class="header">
+        <!--
         <div class="header-left">
             <div class="box">
                 <em class="fa-solid fa-gear fa-xl"></em>
             </div>
-        </div>
+        </div>-->
         <h1>Wordly</h1>
-        <div class="header-right">
+        <!--
+            <div class="header-right">
             <div class="box">
                 <a><em class="fa-solid fa-chart-area fa-xl"></em></a>
             </div>
         </div>
+        -->
     </div>
 </header>
 
@@ -119,12 +125,8 @@
 
 <footer>
     <div>
-        <p id="build_id"></p>
+        <p id="build_id">Build: Development</p>
     </div>
 </footer>
 
 </html>
-
-<script src="js/game.js"></script>
-<script src="js/keyboard.js"></script>
-<script src="js/word.js"></script>
