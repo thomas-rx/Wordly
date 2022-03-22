@@ -43,9 +43,7 @@ function keyboardsEvent(e) {
         key = e.target.id;
     } else if (e.type == "keydown") {
         key = e.key.toLowerCase();
-        if (allowedSymbols.includes(key)) {
-            console.log("ok");
-        } else {
+        if (!allowedSymbols.includes(key)) {
             return;
         }
     }
