@@ -170,7 +170,7 @@ class Game {
             } else {
                 setTimeout(() => {
                     this.newRound();
-                }, 1500 * this.word.length);
+                }, animationDuration * this.word.length);
             }
 
         } else {
@@ -251,7 +251,7 @@ class Game {
 window.addEventListener('load', (event) => {
     window.game = new Game(window.dailyWord.getWord());
     document.getElementById("table").innerHTML = window.game.getWordGrid();
-    document.getElementById("build_id").innerHTML =  "Build:    " + process.env.COMMIT_REF.substring(0, 7);
+    document.getElementById("build_id").innerHTML = "Build:    " + process.env.COMMIT_REF.substring(0, 7);
     //if (window.game.getSaveGame() == '') {
     //    window.game.restoreGame();
     //}
