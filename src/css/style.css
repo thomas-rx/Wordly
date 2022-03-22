@@ -99,6 +99,9 @@ body {
 }
 
 .keyboard-button {
+  width: 50px;
+
+  margin: 2px;
   background-color: white;
   color: black;
   font-size: x-large;
