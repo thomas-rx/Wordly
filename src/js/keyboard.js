@@ -1,3 +1,5 @@
+const allowedSymbols = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "backspace", "enter"];
+
 window.addEventListener('load', (event) => {
     window.keys = [
         document.getElementById("a"),
@@ -31,16 +33,32 @@ window.addEventListener('load', (event) => {
     ];
 
     for (let key of keys) {
-        key.addEventListener("click", function () {
-            if (window.game.gameStatus == 0 && window.game.try <= window.game.maxTrys) {
-                if (key.id == 'backspace') {
-                    window.game.delete();
-                } else if (key.id == 'enter' && window.game.proposition.length == window.game.word.length) {
-                    window.game.verify();
-                } else if (key.id != 'enter' && key.id != 'backspace') {
-                    window.game.add(key.id);
-                }
-            }
-        });
+        key.addEventListener("click", keyboardsEvent);
     }
 });
+
+function keyboardsEvent(e) {
+    let key = null;
+    if (e.type == "click") {
+        key = e.target.id;
+    } else if (e.type == "keydown") {
+        key = e.key.toLowerCase();
+        if (allowedSymbols.includes(key)) {
+            console.log("ok");
+        } else {
+            return;
+        }
+    }
+
+    if (window.game.gameStatus == 0 && window.game.try <= window.game.maxTrys) {
+        if (key == 'backspace') {
+            window.game.delete();
+        } else if (key == 'enter' && window.game.proposition.length == window.game.word.length) {
+            window.game.verify();
+        } else if (key != 'enter' && key != 'backspace') {
+            window.game.add(key);
+        }
+    }
+}
+
+document.addEventListener('keydown', keyboardsEvent);
