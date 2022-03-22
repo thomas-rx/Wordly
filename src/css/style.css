@@ -113,30 +113,10 @@ body {
   text-decoration: none;
 }
 
-@media screen and (max-width: 500px) {
-  .word-grid table {
-    border-spacing: 5px 5px;
-  }
-
-  .keyboard {
-    padding-top: 5%;
-  }
-
-  .keyboard-button {
-    padding: 2.5% 2.5%;
-  }
-
-  .info {
-    padding-top: 5%;
-  }
-
-  footer {
-    padding-top: 3%;
-  }
-}
 .keyboard-button:hover {
   color: rgb(97, 97, 97);
 }
+
 .keyboard-row {
   display: flex;
   justify-content: center;
@@ -153,4 +133,22 @@ footer {
   padding-top: 1%;
   text-align: center;
   font-size: xx-small;
+}
+
+@media screen and (max-width: 500px) {
+  .word-grid table {
+    border-spacing: 5px 5px;
+  }
+
+  .keyboard {
+    padding-top: 5%;
+  }
+
+  .info {
+    padding-top: 5%;
+  }
+
+  footer {
+    padding-top: 3%;
+  }
 }
