@@ -6,8 +6,9 @@ import dotenv from "dotenv";
 const animationDuration = 500;
 
 class Game {
-    constructor(word) {
+    constructor(word, dictionary) {
         this.word = word;
+        this.dictionary = dictionary;
         this.letters = word.split('');
         this.gameStatus = 0; // 0 = playing, 1 = won, 2 = lost
         this.maxTrys = 6;
@@ -71,7 +72,7 @@ class Game {
         if (this.cell >= 0 && this.cell < this.word.length * this.try) {
             this.cell++;
             this.setCellValue(this.cell, letter);
-            this.proposition.push(letter.toLowerCase());
+            this.proposition.push(letter.toUpperCase());
         }
     }
 
@@ -88,12 +89,12 @@ class Game {
     }
 
     setKeyOff(id) {
-        let btn = document.getElementById(id);
+        let btn = document.getElementById(id.toLowerCase());
         btn.style.backgroundColor = '#5b5b5b';
     }
 
     setKeyOn(id) {
-        let btn = document.getElementById(id);
+        let btn = document.getElementById(id.toLowerCase());
         btn.style.backgroundColor = '#ffffff';
     }
 
@@ -102,7 +103,7 @@ class Game {
     }
 
     verify() {
-        if (this.proposition.length == this.word.length && window.dailyWord.getWordList().includes(this.proposition.join('').toUpperCase())) {
+        if (this.proposition.length == this.word.length && this.dictionary.includes(this.proposition.join('').toUpperCase())) {
             var word = this.letters.slice()
             var proposition = this.proposition.slice();
 
@@ -144,8 +145,8 @@ class Game {
 
                     } else {
                         setTimeout(() => {
-                            this.setCellColor(id + 1, '#1D1D1D');
-                        }, animationDuration * i);
+                            this.setCellColor(this.getFirstCellID() + parseInt(x) + 1, '#1D1D1D');
+                        }, animationDuration * x);
                         proposition[parseInt(x)] = '🟥';
                     }
                 }
@@ -249,10 +250,11 @@ class Game {
 }
 
 window.addEventListener('load', (event) => {
-    window.game = new Game(window.dailyWord.getWord());
+    const word = window.dailyWord.getRandomWord();
+    const dictionary = window.dailyWord.getDictionary();
+
+    window.game = new Game(word, dictionary);
+
     document.getElementById("table").innerHTML = window.game.getWordGrid();
     document.getElementById("build_id").innerHTML = "Build:    " + process.env.COMMIT_REF.substring(0, 7);
-    //if (window.game.getSaveGame() == '') {
-    //    window.game.restoreGame();
-    //}
 });
