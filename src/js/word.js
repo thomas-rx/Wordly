@@ -4,8 +4,9 @@ import { Buffer } from 'buffer';
 
 class DailyWord {
     constructor() {
-        this.date = new Date().toISOString().slice(0, 10);
-        this.seed = parseInt(seedrandom(this.date).quick() * 1000);
+        this.date = new Date()
+        this.day = this.date.getDay();
+        this.seed = parseInt(seedrandom(this.date.toISOString().slice(0, 10)).quick() * 10);
         this.dictionary = fs.readFileSync('src/data/dictionnaire.txt').toString().split('\n');
         this.production = fs.readFileSync('src/data/production.txt').toString().split('\n');
     }
@@ -19,8 +20,7 @@ class DailyWord {
     }
 
     getRandomWord() {
-        const productionDictionary = this.getProduction();
-        return productionDictionary[this.seed];
+        return this.getProduction()[this.seed % this.getProduction().length];
     }
 }
 
