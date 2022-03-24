@@ -3,7 +3,7 @@
 import ConfettiGenerator from "confetti-js";
 import dotenv from "dotenv";
 
-const animationDuration = 500;
+const animationDuration = 300;
 
 class Game {
     constructor(word, dictionary) {
