@@ -10,7 +10,7 @@
 
   <div>
     <h1 align="center">Wordly</h1>
-    <a href="wordly.xrths.fr">wordly.xrths.fr</a>
+    <a href="https://wordly.xrths.fr">wordly.xrths.fr</a>
   </div>
 </div>
 
