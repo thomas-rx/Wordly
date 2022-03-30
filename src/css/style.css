@@ -12,7 +12,6 @@ body {
 
 .header {
   background-color: rgb(35, 34, 37);
-
   display: flex;
   align-items: center;
   height: 60px;
@@ -21,11 +20,11 @@ body {
 
 .header a {
   color: white;
+  position: relative;
 }
 
 .box {
   background-color: rgb(71, 71, 72);
-
   text-align: center;
   height: 45px;
   width: 45px;
@@ -44,16 +43,20 @@ body {
 .header h1 {
   font-family: "Supermercado One", cursive;
   font-size: xx-large;
+  margin: auto;
 }
 
 .header-left {
+  display: none;
+  position: absolute;
   float: left;
-  padding-right: 20%;
+  margin-right: 50%;
 }
 
 .header-right {
   float: right;
-  padding-left: 20%;
+  position: absolute;
+  margin-left: 50%;
 }
 
 .word-grid {
@@ -98,17 +101,16 @@ body {
 
 .keyboard-button {
   width: 50px;
-
   margin: 2px;
   background-color: white;
   color: black;
   font-size: x-large;
-
   border-radius: 15%;
   border: none;
   padding: 1% 1%;
   text-align: center;
   text-decoration: none;
+  position: relative;
 }
 
 .keyboard-button:hover {
@@ -123,7 +125,6 @@ body {
 canvas {
   display: block;
   position: fixed;
-  z-index: 9999;
 }
 
 footer {
@@ -134,6 +135,13 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
+  .header-left {
+    margin-right: 65%;
+  }
+
+  .header-right {
+    margin-left: 65%;
+  }
   .word-grid table {
     border-spacing: 5px 5px;
   }
@@ -146,7 +154,6 @@ footer {
     width: 40px;
     height: 50px;
     font-size: large;
-
   }
 
   .info {
