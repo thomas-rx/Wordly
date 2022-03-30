@@ -217,7 +217,7 @@ class Game {
             shareText = `📚 Je suis nul, je n'ai pas trouvé le mot du jour.`;
         }
         const text = this.historyEmoji.join('\n').replaceAll(',', '');
-        const copyText = shareText + '\n\n' + text + '\n\n' + 'Viens jouer sur https://wordly.xrths.fr';
+        const copyText = shareText + '\n\n' + text + '\n\n' + 'Viens jouer toi aussi ! https://wordly.xrths.fr';
         navigator.clipboard.writeText(copyText);
     }
 }
