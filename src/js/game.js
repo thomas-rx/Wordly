@@ -1,5 +1,3 @@
-// TODO : Système de sauvegarde
-// TODO : Système de chargement
 import ConfettiGenerator from "confetti-js";
 import dotenv from "dotenv";
 
@@ -13,9 +11,11 @@ class Game {
         this.gameStatus = 0; // 0 = playing, 1 = won, 2 = lost
         this.maxTrys = 6;
         this.try = 1;
-        this.proposition = [];
-        this.gameState = [];
         this.cell = 1;
+        this.proposition = [];
+        this.historyEmoji = [];
+        this.historyText = [];
+        this.success = false;
     }
 
     getWordGrid() {
@@ -102,6 +102,21 @@ class Game {
         document.getElementsByClassName('keyboard')[0].style.display = 'none';
     }
 
+    setShareButtonOn() {
+        document.querySelector('.header-left').style.display = 'block';
+    }
+
+    setInfoText(text, final) {
+        let e = document.getElementsByClassName('info')[0];
+        e.innerHTML = text;
+        e.style.opacity = 1;
+        if (!final) {
+            setTimeout(() => {
+                e.style.opacity = 0;
+            }, 3000);
+        }
+    }
+
     verify() {
         if (this.proposition.length == this.word.length && this.dictionary.includes(this.proposition.join('').toUpperCase())) {
             var word = this.letters.slice()
@@ -152,21 +167,25 @@ class Game {
                 }
             }
 
-            this.gameState.push(proposition);
-            console.log(proposition);
+            this.historyEmoji.push(proposition);
+            this.historyText.push(proposition.join('').replaceAll("🟩", 'V').replaceAll("🟥", 'R').replaceAll("🟧", 'O'));
 
-            if (this.proposition.join('') == this.word) {
+            if (this.proposition.join('') == this.word) { // Win
                 this.gameStatus = 1;
 
                 setTimeout(() => {
                     this.setKeyboardOff();
                     this.showConfetti();
+                    this.success = true;
+                    this.setInfoText("Vous pouvez partager votre résultat ! 🧠", true);
+                    this.setShareButtonOn();
                 }, animationDuration * this.word.length);
 
-                //this.saveGame()
 
-            } else if (this.try == this.maxTrys) {
+            } else if (this.try == this.maxTrys) { // Lost
                 this.setKeyboardOff();
+                this.setShareButtonOn();
+
 
             } else {
                 setTimeout(() => {
@@ -175,13 +194,7 @@ class Game {
             }
 
         } else {
-            let e = document.getElementsByClassName('info')[0];
-            e.innerHTML = "Ce mot n'est pas dans notre dictionnaire.";
-            e.style.opacity = 1;
-
-            setTimeout(() => {
-                e.style.opacity = 0;
-            }, 3000);
+            this.setInfoText("Ce mot n'est pas dans notre dictionnaire.", false);
         }
     }
 
@@ -190,62 +203,22 @@ class Game {
         this.try++;
     }
 
-    saveGame() { // TODO : Finaliser
-        let result = '';
-        for (let x in this.gameState) {
-            result += this.gameState[x].join('').replace(/,/g, '');
-            result += '\n';
-        }
-
-        for (let x in this.gameState) {
-            switch (x) {
-                case '🟩':
-                    result = result.replace('🟩', '1');
-                    break;
-                case '🟥':
-                    result = result.replace('🟥', '2');
-                    break;
-                case '🟧':
-                    result = result.replace('🟧', '3');
-                    break;
-            }
-        }
-
-        console.log(result);
-        let cookie = `try=${this.try} gameStatus=${this.gameStatus} gameState=${result}`;
-        document.cookie = cookie;
-        console.log('🎉 Game saved !');
-        console.log(document.cookie);
-    }
-
-    getSaveGame() {
-        return document.cookie;
-    }
-
-    restoreGame() { // TODO : Finaliser
-        let cookie = this.getSaveGame();
-        let cookie_array = cookie.split(' ');
-        console.log("Restoring game");
-        console.log(cookie);
-
-        if (cookie_array[0].includes('try')) {
-            this.try = parseInt(cookie_array[0].split('=')[1]);
-        }
-
-        if (cookie_array[1].includes('gameStatus')) {
-            this.gameStatus = parseInt(cookie_array[1].split('=')[1]);
-            if (this.gameStatus == 1) {
-                document.getElementsByClassName('keyboard')[0].style.display = 'none';
-                this.showConfetti();
-            }
-        }
-
-    }
-
     showConfetti() {
         var confettiSettings = { target: 'canvas-confetti', size: 1, start_from_edge: true, respawn: false, clock: 20, max: 150 / this.try, rotate: true };
         var confetti = new ConfettiGenerator(confettiSettings);
         confetti.render();
+    }
+
+    shareResult() {
+        let shareText;
+        if (this.success) {
+            shareText = `📚 Je viens de trouver le mot du jour en ${this.try} ${this.try > 1 ? "essais" : "essai"} !`;
+        } else {
+            shareText = `📚 Je suis nul, je n'ai pas trouvé le mot du jour.`;
+        }
+        const text = this.historyEmoji.join('\n').replaceAll(',', '');
+        const copyText = shareText + '\n\n' + text + '\n\n' + 'Viens jouer sur https://wordly.xrths.fr';
+        navigator.clipboard.writeText(copyText);
     }
 }
 

@@ -37,7 +37,8 @@
     <title>Wordly - en Français</title>
     <meta name="title" content="Wordly">
     <meta name="theme-color" content="#121214">
-    <meta name="description" content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur.">
+    <meta name="description"
+        content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur.">
     <meta name="keywords" content="wordly,wordle,motus,sutom,lemot,thierry,beccaro,francetv">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -48,7 +49,8 @@
     <meta property="og:title" content="Wordly - Devinez le mots du jour !">
     <meta property="og:site_name" content="Wordly">
     <meta property="og:url" content="https://wordly.xrths.fr">
-    <meta property="og:description" content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur.">
+    <meta property="og:description"
+        content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur.">
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -59,30 +61,33 @@
     <script src="js/keyboard.js" defer></script>
     <script src="js/word.js"></script>
     <script src="js/game.js" defer></script>
+    <script src="js/listener.js" defer></script>
     <script src="../node_modules/normalize.css/normalize.css"></script>
 </head>
 
 <header>
     <canvas id="canvas-confetti"></canvas>
     <div class="header">
-        <!--
         <div class="header-left">
             <div class="box">
-                <em class="fa-solid fa-gear fa-xl"></em>
+                <a id="share">
+                    <em class="fa-solid fa-share fa-xl"></em>
+                </a>
             </div>
-        </div>-->
+        </div>
         <h1>Wordly</h1>
-        <!--
-            <div class="header-right">
+        <!--<div class="header-right">
             <div class="box">
                 <a><em class="fa-solid fa-chart-area fa-xl"></em></a>
             </div>
-        </div>
-        -->
+        </div>-->
     </div>
+    
 </header>
 
 <body>
+    <a style="display: none" href="./robots.txt" aria-label="robots"></a>
+
     <div class="word-grid">
         <div id="table"></div>
     </div>
