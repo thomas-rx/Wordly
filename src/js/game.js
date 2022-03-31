@@ -185,7 +185,7 @@ class Game {
             } else if (this.try == this.maxTrys) { // Lost
                 this.setKeyboardOff();
                 this.setShareButtonOn();
-
+                this.setInfoText("Vous avez perdu ! 😭 <br>" + this.word + "...", true);
 
             } else {
                 setTimeout(() => {
