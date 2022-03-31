@@ -50,11 +50,11 @@ function keyboardsEvent(e) {
 
     if (window.game.gameStatus == 0 && window.game.try <= window.game.maxTrys) {
         if (key == 'backspace') {
-            window.game.delete();
+            window.game.deleteLastLetter();
         } else if (key == 'enter' && window.game.proposition.length == window.game.word.length) {
-            window.game.verify();
+            window.game.verifyProposition();
         } else if (key != 'enter' && key != 'backspace') {
-            window.game.add(key);
+            window.game.addLetter(key);
         }
     }
 }

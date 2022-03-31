@@ -15,7 +15,6 @@ class Game {
         this.proposition = [];
         this.historyEmoji = [];
         this.historyText = [];
-        this.success = false;
     }
 
     getWordGrid() {
@@ -68,7 +67,7 @@ class Game {
         }
     }
 
-    add(letter) {
+    addLetter(letter) {
         if (this.cell >= 0 && this.cell < this.word.length * this.try) {
             this.cell++;
             this.setCellValue(this.cell, letter);
@@ -76,7 +75,7 @@ class Game {
         }
     }
 
-    delete() {
+    deleteLastLetter() {
         if (this.cell > 1 && this.cell > this.getFirstCellID()) {
             this.removeCellValue(this.cell);
             this.cell--;
@@ -106,6 +105,10 @@ class Game {
         document.querySelector('.header-left').style.display = 'block';
     }
 
+    setShareButtonOff() {
+        document.querySelector('.header-left').style.display = 'none';
+    }
+
     setInfoText(text, final) {
         let e = document.getElementsByClassName('info')[0];
         e.innerHTML = text;
@@ -117,85 +120,63 @@ class Game {
         }
     }
 
-    verify() {
+    verifyProposition() {
         if (this.proposition.length == this.word.length && this.dictionary.includes(this.proposition.join('').toUpperCase())) {
-            var word = this.letters.slice()
-            var proposition = this.proposition.slice();
+            let proposition = this.proposition.slice();
+            let local_word = this.letters.slice();
 
             for (let i = 0; i < this.word.length; i++) {
-                let id = this.getFirstCellID() + i;
+                let cellId = this.getFirstCellID() + i;
 
-                if (this.word[i] == this.proposition[i]) { // Verifying correct letters
-
-                    setTimeout(() => {
-                        this.setCellColor(id + 1, '#228b22');
-                    }, animationDuration * i);
-
+                if (local_word[i] == this.proposition[i]) { // letter is correct
                     proposition[i] = '🟩';
-                    word[i] = "🟩";
+                    local_word[i] = '🟩';
 
-                } else if (this.word.includes(this.proposition[i])) { // Verifying wrong place letters {
-                    continue;
-
-                } else { // Incorrect letters
                     setTimeout(() => {
-                        this.setCellColor(id + 1, '#1D1D1D');
+                        this.setCellColor(cellId + 1, '#228b22');
                     }, animationDuration * i);
-                    this.setKeyOff(this.proposition[i]);
+
+                } else if (!local_word.includes(this.proposition[i])) { // letter is not in the word
                     proposition[i] = '🟥';
+                    local_word[i] = '🟥';
+
+                    setTimeout(() => {
+                        this.setCellColor(cellId + 1, '#1D1D1D');
+                    }, animationDuration * i);
+
+                    this.setKeyOff(this.proposition[i]);
+
+                } else { // letter is in the word but not in the right position
+                    proposition[i] = '🟧';
+                    local_word[i] = '🟧';
+
+                    setTimeout(() => {
+                        this.setCellColor(cellId + 1, '#e9692c');
+                    }, animationDuration * i);
+
 
                 }
             }
-
-            for (let x in proposition) {
-
-                if (proposition[x] != '🟩' && proposition[x] != '🟥' && proposition[x] != '🟧') {
-
-                    if (word.includes(proposition[x]) && proposition.includes(proposition[x])) {
-                        setTimeout(() => {
-                            this.setCellColor(this.getFirstCellID() + parseInt(x) + 1, '#e9692c');
-                        }, animationDuration * x);
-
-                        proposition[parseInt(x)] = '🟧';
-
-                    } else {
-                        setTimeout(() => {
-                            this.setCellColor(this.getFirstCellID() + parseInt(x) + 1, '#1D1D1D');
-                        }, animationDuration * x);
-                        proposition[parseInt(x)] = '🟥';
-                    }
-                }
-            }
-
             this.historyEmoji.push(proposition);
             this.historyText.push(proposition.join('').replaceAll("🟩", 'V').replaceAll("🟥", 'R').replaceAll("🟧", 'O'));
-
-            if (this.proposition.join('') == this.word) { // Win
-                this.gameStatus = 1;
-
-                setTimeout(() => {
-                    this.setKeyboardOff();
-                    this.showConfetti();
-                    this.success = true;
-                    this.setInfoText("Vous pouvez partager votre résultat ! 🧠", true);
-                    this.setShareButtonOn();
-                }, animationDuration * this.word.length);
-
-
-            } else if (this.try == this.maxTrys) { // Lost
-                this.setKeyboardOff();
-                this.setShareButtonOn();
-                this.setInfoText("Vous avez perdu ! 😭 <br>" + this.word + "...", true);
-
-            } else {
-                setTimeout(() => {
-                    this.newRound();
-                }, animationDuration * this.word.length);
-            }
-
-        } else {
-            this.setInfoText("Ce mot n'est pas dans notre dictionnaire.", false);
+            this.checkWinOrLose();
         }
+    }
+
+    checkWinOrLose() {
+        if (this.proposition.join('') == this.word) { // game won
+            this.gameStatus = 1;
+            this.setInfoText("Vous pouvez partager votre résultat ! 🧠", true);
+            this.setShareButtonOn();
+            return true;
+        } else if (this.try == this.maxTrys && this.proposition.join('') != this.word) { // game is lost
+            this.setInfoText(`Vous avez perdu ! 😭 <br> ${this.word}...`, true);
+            this.setShareButtonOn();
+            this.gameStatus = 2;
+        } else {  // game is still playing
+            this.newRound();
+        }
+        return false;
     }
 
     newRound() {
@@ -211,13 +192,12 @@ class Game {
 
     shareResult() {
         let shareText;
-        if (this.success) {
+        if (this.gameStatus == 1) {
             shareText = `📚 Je viens de trouver le mot du jour en ${this.try} ${this.try > 1 ? "essais" : "essai"} !`;
-        } else {
-            shareText = `📚 Je suis nul, je n'ai pas trouvé le mot du jour.`;
+        } else if (this.gameStatus == 2) {
+            shareText = `📚 Je n'ai pas trouvé le mot du jour... 😭`;
         }
-        const text = this.historyEmoji.join('\n').replaceAll(',', '');
-        const copyText = shareText + '\n\n' + text + '\n\n' + 'Viens jouer toi aussi ! https://wordly.xrths.fr';
+        const copyText = shareText + `\n\n ${this.historyEmoji.join('\n').replaceAll(',', '')}  \n\n Viens jouer toi aussi ! https://wordly.xrths.fr`;
         navigator.clipboard.writeText(copyText);
     }
 }
