@@ -1,5 +1,6 @@
 import ConfettiGenerator from "confetti-js";
 import dotenv from "dotenv";
+import Timer from "easytimer.js";
 
 const animationDuration = 300;
 
@@ -8,13 +9,14 @@ class Game {
         this.word = word;
         this.dictionary = dictionary;
         this.letters = word.split('');
-        this.gameStatus = 0; // 0 = playing, 1 = won, 2 = lost
+        this.gameStatus = 3; // ? 0 = playing, 1 = won, 2 = lost, 3 = waiting for start
         this.maxTrys = 6;
         this.try = 1;
         this.cell = 1;
         this.proposition = [];
         this.historyEmoji = [];
         this.historyText = [];
+        this.timer = new Timer();
     }
 
     getWordGrid() {
@@ -165,11 +167,13 @@ class Game {
 
     checkWinOrLose() {
         if (this.proposition.join('') == this.word) { // game won
-            this.gameStatus = 1;
+            this.stopTimer();
             this.setInfoText("Vous pouvez partager votre résultat ! 🧠", true);
             this.setShareButtonOn();
+            this.gameStatus = 1;
             return true;
         } else if (this.try == this.maxTrys && this.proposition.join('') != this.word) { // game is lost
+            this.stopTimer();
             this.setInfoText(`Vous avez perdu ! 😭 <br> ${this.word}...`, true);
             this.setShareButtonOn();
             this.gameStatus = 2;
@@ -193,12 +197,28 @@ class Game {
     shareResult() {
         let shareText;
         if (this.gameStatus == 1) {
-            shareText = `📚 Je viens de trouver le mot du jour en ${this.try} ${this.try > 1 ? "essais" : "essai"} !`;
+            shareText = `📚 Je viens de trouver le mot du jour en ${this.try} ${this.try > 1 ? "essais" : "essai"} ! \nScore: ${this.getScore()}/1000`;
         } else if (this.gameStatus == 2) {
-            shareText = `📚 Je n'ai pas trouvé le mot du jour... 😭`;
+            shareText = `📚 Je n'ai pas réussi à trouver le mot du jour, pourras-tu y arriver ?`
         }
         const copyText = shareText + `\n\n${this.historyEmoji.join('\n').replaceAll(',', '')}  \n\n Viens jouer toi aussi ! https://wordly.xrths.fr`;
         navigator.clipboard.writeText(copyText);
+    }
+
+    startTimer() {
+        this.timer.start();
+    }
+
+    getScore() {
+        // Max time = 5 minutes
+        const coefficient = 2;
+        const maxScore = (60 * 5) * this.maxTrys * coefficient;
+        const format = 1000; // Max score formated
+        return parseInt(((maxScore - (this.timer.getTimeValues().seconds * (this.try * coefficient))) * format) / maxScore);
+    }
+
+    stopTimer() {
+        this.timer.pause();
     }
 }
 

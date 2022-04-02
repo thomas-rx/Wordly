@@ -38,6 +38,11 @@ window.addEventListener('load', (event) => {
 });
 
 function keyboardsEvent(e) {
+    if (window.game.gameStatus == 3) {
+        window.game.startTimer();
+        window.game.gameStatus = 0;
+    }
+    
     let key = null;
     if (e.type == "click") {
         key = e.target.id;
