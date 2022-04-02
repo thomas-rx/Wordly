@@ -197,7 +197,7 @@ class Game {
         } else if (this.gameStatus == 2) {
             shareText = `📚 Je n'ai pas trouvé le mot du jour... 😭`;
         }
-        const copyText = shareText + `\n\n ${this.historyEmoji.join('\n').replaceAll(',', '')}  \n\n Viens jouer toi aussi ! https://wordly.xrths.fr`;
+        const copyText = shareText + `\n\n${this.historyEmoji.join('\n').replaceAll(',', '')}  \n\n Viens jouer toi aussi ! https://wordly.xrths.fr`;
         navigator.clipboard.writeText(copyText);
     }
 }
