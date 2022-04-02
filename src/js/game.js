@@ -162,6 +162,8 @@ class Game {
             this.historyEmoji.push(proposition);
             this.historyText.push(proposition.join('').replaceAll("🟩", 'V').replaceAll("🟥", 'R').replaceAll("🟧", 'O'));
             this.checkWinOrLose();
+        } else if (this.proposition.length == this.word.length && !this.dictionary.includes(this.proposition.join('').toUpperCase())) {
+            this.setInfoText('Ce mot n\'est pas dans notre dictionnaire.', false);
         }
     }
 
