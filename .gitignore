@@ -94,3 +94,9 @@ Thumbs.db
 .cache
 
 node_modules
+
+# IDE 
+.vscode
+
+# SonarQube
+.scannerwork
