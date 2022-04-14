@@ -28,20 +28,20 @@ The online version is hosted on Netlify.
 
 ### Built With
 
-- NodeJS
-- Parcel
-- Confetti-Js
-- Seedrandom
-- Fontawesome
+-   NodeJS
+-   Parcel
+-   Confetti-Js
+-   Seedrandom
+-   Fontawesome
 
 ## Credit
 
 Thank you for your advice & ideas.
 
-- [Thomas R.](https://github.com/xrths)
-- [Nathan B.](https://github.com/NathBel)
-- [Christophe S.](https://github.com/Crtph)
-- [Bastien S.](https://github.com/rootxls)
+-   [Thomas R.](https://github.com/xrths)
+-   [Nathan B.](https://github.com/NathBel)
+-   [Christophe S.](https://github.com/Crtph)
+-   [Bastien S.](https://github.com/rootxls)
 
 ## Contributing
 

@@ -1,27 +1,27 @@
 {
-  "name": "wordly",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html"
-  },
-  "author": "Thomas R.",
-  "license": "MIT",
-  "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.8",
-    "@fortawesome/fontawesome-free": "^6.1.0",
-    "buffer": "^6.0.3",
-    "confetti-js": "^0.0.18",
-    "easytimer.js": "^4.5.3",
-    "js-cookie": "^3.0.1",
-    "normalize.css": "^8.0.1",
-    "read-env": "^2.0.0",
-    "seedrandom": "^3.0.5"
-  },
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5"
-  },
-  "type": "module"
+    "name": "wordly",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "parcel src/index.html",
+        "build": "parcel build src/index.html"
+    },
+    "author": "Thomas R.",
+    "license": "MIT",
+    "dependencies": {
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@fortawesome/fontawesome-free": "^6.1.0",
+        "buffer": "^6.0.3",
+        "confetti-js": "^0.0.18",
+        "easytimer.js": "^4.5.3",
+        "js-cookie": "^3.0.1",
+        "normalize.css": "^8.0.1",
+        "read-env": "^2.0.0",
+        "seedrandom": "^3.0.5"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.5"
+    },
+    "type": "module"
 }

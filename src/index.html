@@ -1,16 +1,20 @@
 <!-- Matomo -->
 <script>
-    var _paq = window._paq = window._paq || [];
+    var _paq = (window._paq = window._paq || [])
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function () {
-        var u = "https://analytics.xrths.cloud/";
-        _paq.push(['setTrackerUrl', u + 'matomo.php']);
-        _paq.push(['setSiteId', '1']);
-        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-        g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
-    })();
+    _paq.push(['trackPageView'])
+    _paq.push(['enableLinkTracking'])
+        ; (function () {
+            var u = 'https://analytics.xrths.cloud/'
+            _paq.push(['setTrackerUrl', u + 'matomo.php'])
+            _paq.push(['setSiteId', '1'])
+            var d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0]
+            g.async = true
+            g.src = u + 'matomo.js'
+            s.parentNode.insertBefore(g, s)
+        })()
 </script>
 <!-- End Matomo Code -->
 
@@ -18,45 +22,44 @@
 <html lang="fr">
 
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./assets/favicon/site.webmanifest">
-    <link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg" color="#434343">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="./assets/favicon/safari-pinned-tab.svg" color="#434343" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
 
     <title>Wordly - en Français</title>
-    <meta name="title" content="Wordly">
-    <meta name="theme-color" content="#121214">
+    <meta name="title" content="Wordly" />
+    <meta name="theme-color" content="#121214" />
     <meta name="description"
-        content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur.">
-    <meta name="keywords" content="wordly,wordle,motus,sutom,lemot,thierry,beccaro,francetv">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="French">
-    <meta name="revisit-after" content="7 days">
-    <meta name="author" content="Thomas R.">
+        content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur." />
+    <meta name="keywords" content="wordly,wordle,motus,sutom,lemot,thierry,beccaro,francetv" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="French" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="author" content="Thomas R." />
 
-    <meta property="og:title" content="Wordly - Devinez le mots du jour !">
-    <meta property="og:site_name" content="Wordly">
-    <meta property="og:url" content="https://wordly.xrths.fr">
+    <meta property="og:title" content="Wordly - Devinez le mots du jour !" />
+    <meta property="og:site_name" content="Wordly" />
+    <meta property="og:url" content="https://wordly.xrths.fr" />
     <meta property="og:description"
-        content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur.">
-    <meta property="og:type" content="website">
+        content="Venez jouer au célèbre jeu Wordle en Français. Un nouveau mot chaque jour, partagez votre résultat avec vos proches et découvrez qui est le meilleur." />
+    <meta property="og:type" content="website" />
 
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet" />
 
     <script src="js/keyboard.js" defer></script>
     <script src="js/word.js"></script>
@@ -82,7 +85,6 @@
             </div>
         </div>-->
     </div>
-    
 </header>
 
 <body>
@@ -95,7 +97,6 @@
     <div class="info">
         <p></p>
     </div>
-
 
     <div class="keyboard">
         <div class="keyboard-row">
@@ -133,7 +134,6 @@
             <button class="keyboard-button" id="backspace">⌫</button>
         </div>
     </div>
-
 </body>
 
 <footer>
@@ -143,4 +143,3 @@
 </footer>
 
 </html>
-<!--<script>window.alert("Ceci est une version BETA du jeu. \n\nJ'ai amélioré la selection des mots et optimisé le chargement du jeu. 🎉 \n\nCode : https://github.com/xrths/Wordly");</script>

@@ -1,166 +1,166 @@
 body {
-  background-color: rgb(18, 18, 20);
-  color: white;
-  font-family: "Secular One", sans-serif;
-  font-size: large;
+    background-color: rgb(18, 18, 20);
+    color: white;
+    font-family: 'Secular One', sans-serif;
+    font-size: large;
 
-  margin: 0; /* remove margin */
-  touch-action: manipulation; /* disable pinch-to-zoom */
-  overflow-y: hidden; /* Hide vertical scrollbar */
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+    margin: 0; /* remove margin */
+    touch-action: manipulation; /* disable pinch-to-zoom */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 .header {
-  background-color: rgb(35, 34, 37);
-  display: flex;
-  align-items: center;
-  height: 60px;
-  justify-content: center;
+    background-color: rgb(35, 34, 37);
+    display: flex;
+    align-items: center;
+    height: 60px;
+    justify-content: center;
 }
 
 .header a {
-  color: white;
-  position: relative;
+    color: white;
+    position: relative;
 }
 
 .box {
-  background-color: rgb(71, 71, 72);
-  text-align: center;
-  height: 45px;
-  width: 45px;
-  border-radius: 10%;
+    background-color: rgb(71, 71, 72);
+    text-align: center;
+    height: 45px;
+    width: 45px;
+    border-radius: 10%;
 }
 
 .header .box:hover {
-  background-color: rgb(95, 95, 95);
+    background-color: rgb(95, 95, 95);
 }
 
 .header em {
-  margin-top: 50%;
-  font-size: large;
+    margin-top: 50%;
+    font-size: large;
 }
 
 .header h1 {
-  font-family: "Supermercado One", cursive;
-  font-size: xx-large;
-  margin: auto;
+    font-family: 'Supermercado One', cursive;
+    font-size: xx-large;
+    margin: auto;
 }
 
 .header-left {
-  display: none;
-  position: absolute;
-  float: left;
-  margin-right: 50%;
+    display: none;
+    position: absolute;
+    float: left;
+    margin-right: 50%;
 }
 
 .header-right {
-  float: right;
-  position: absolute;
-  margin-left: 50%;
+    float: right;
+    position: absolute;
+    margin-left: 50%;
 }
 
 .word-grid {
-  margin-top: 3%;
-  justify-content: center;
-  display: flex;
-  padding-top: 2%;
-  padding-right: 5%;
-  padding-left: 5%;
-  transition-delay: 2s;
+    margin-top: 3%;
+    justify-content: center;
+    display: flex;
+    padding-top: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
+    transition-delay: 2s;
 }
 
 .word-grid table {
-  border-spacing: 7.5px 7.5px;
-  font-size: x-large;
+    border-spacing: 7.5px 7.5px;
+    font-size: x-large;
 }
 
 .word-grid td {
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border-radius: 10%;
-  border: 2px solid rgb(78, 75, 75);
-  background-color: rgb(29, 29, 29);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10%;
+    border: 2px solid rgb(78, 75, 75);
+    background-color: rgb(29, 29, 29);
 }
 
 .info {
-  display: block;
-  text-align: center;
-  padding-top: 0.5%;
-  opacity: 0;
-  cursor: pointer;
-  -webkit-transition: 0.25s all ease-in-out;
-  -moz-transition: 0.25s all ease-in-out;
-  -o-transition: 0.25s all ease-in-out;
-  transition: 0.25s all ease-in-out;
+    display: block;
+    text-align: center;
+    padding-top: 0.5%;
+    opacity: 0;
+    cursor: pointer;
+    -webkit-transition: 0.25s all ease-in-out;
+    -moz-transition: 0.25s all ease-in-out;
+    -o-transition: 0.25s all ease-in-out;
+    transition: 0.25s all ease-in-out;
 }
 
 .keyboard {
-  padding: 1% 5% 0 5%;
+    padding: 1% 5% 0 5%;
 }
 
 .keyboard-button {
-  width: 50px;
-  margin: 2px;
-  background-color: white;
-  color: black;
-  font-size: x-large;
-  border-radius: 15%;
-  border: none;
-  padding: 1% 1%;
-  text-align: center;
-  text-decoration: none;
-  position: relative;
+    width: 50px;
+    margin: 2px;
+    background-color: white;
+    color: black;
+    font-size: x-large;
+    border-radius: 15%;
+    border: none;
+    padding: 1% 1%;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
 }
 
 .keyboard-button:hover {
-  color: rgb(97, 97, 97);
+    color: rgb(97, 97, 97);
 }
 
 .keyboard-row {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 canvas {
-  display: block;
-  position: fixed;
+    display: block;
+    position: fixed;
 }
 
 footer {
-  color: rgb(105, 105, 105);
-  padding-top: 1%;
-  text-align: center;
-  font-size: xx-small;
+    color: rgb(105, 105, 105);
+    padding-top: 1%;
+    text-align: center;
+    font-size: xx-small;
 }
 
 @media screen and (max-width: 500px) {
-  .header-left {
-    margin-right: 65%;
-  }
+    .header-left {
+        margin-right: 65%;
+    }
 
-  .header-right {
-    margin-left: 65%;
-  }
-  .word-grid table {
-    border-spacing: 5px 5px;
-  }
+    .header-right {
+        margin-left: 65%;
+    }
+    .word-grid table {
+        border-spacing: 5px 5px;
+    }
 
-  .keyboard {
-    padding-top: 2%;
-  }
+    .keyboard {
+        padding-top: 2%;
+    }
 
-  .keyboard-button {
-    width: 40px;
-    height: 50px;
-    font-size: large;
-  }
+    .keyboard-button {
+        width: 40px;
+        height: 50px;
+        font-size: large;
+    }
 
-  .info {
-    padding-top: 2%;
-  }
+    .info {
+        padding-top: 2%;
+    }
 
-  footer {
-    padding-top: 3%;
-  }
+    footer {
+        padding-top: 3%;
+    }
 }
