@@ -17,7 +17,6 @@
         "easytimer.js": "^4.5.3",
         "js-cookie": "^3.0.1",
         "normalize.css": "^8.0.1",
-        "read-env": "^2.0.0",
         "seedrandom": "^3.0.5"
     },
     "devDependencies": {

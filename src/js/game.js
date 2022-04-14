@@ -1,5 +1,4 @@
 import ConfettiGenerator from 'confetti-js'
-import dotenv from 'dotenv'
 import Timer from 'easytimer.js'
 import Cookies from 'js-cookie'
 
@@ -192,7 +191,11 @@ class Game {
                     .replaceAll('🟥', 'R')
                     .replaceAll('🟧', 'O')
             )
+            setTimeout(() => {
+                
             this.checkWinOrLose()
+            }, animationDuration * this.word.length)
+
         } else if (
             this.proposition.length == this.word.length &&
             !this.dictionary.includes(this.proposition.join('').toUpperCase())
@@ -206,7 +209,7 @@ class Game {
             // game won
             this.stopTimer()
             this.score = this.getScore()
-            this.setInfoText('Vous pouvez partager votre résultat ! 🧠', true)
+            this.setInfoText('Vous pouvez partager votre résultat !', true)
             this.setShareButtonOn()
             this.gameStatus = 1
             this.saveGame()
@@ -217,7 +220,7 @@ class Game {
         ) {
             // game is lost
             this.stopTimer()
-            this.setInfoText(`Vous avez perdu ! 😭 <br> ${this.word}...`, true)
+            this.setInfoText(`Vous avez perdu ! <br> Le mot était : ${this.word}`, true)
             this.setShareButtonOn()
             this.gameStatus = 2
         } else {

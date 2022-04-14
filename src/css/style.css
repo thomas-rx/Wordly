@@ -49,14 +49,12 @@ body {
 .header-left {
     display: none;
     position: absolute;
-    float: left;
-    margin-right: 50%;
+    left: 10%;
 }
 
 .header-right {
-    float: right;
     position: absolute;
-    margin-left: 50%;
+    right: 10%;
 }
 
 .word-grid {
@@ -135,6 +133,10 @@ footer {
 }
 
 @media screen and (max-width: 500px) {
+    body {
+        font-size: small;
+        overflow-y: auto; /* Hide vertical scrollbar */
+    }
     .header-left {
         margin-right: 65%;
     }
