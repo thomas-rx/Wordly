@@ -1,6 +1,7 @@
 import ConfettiGenerator from "confetti-js";
 import dotenv from "dotenv";
 import Timer from "easytimer.js";
+import Cookies from 'js-cookie';
 
 const animationDuration = 300;
 
@@ -17,6 +18,7 @@ class Game {
         this.historyEmoji = [];
         this.historyText = [];
         this.timer = new Timer();
+        this.score = 0;
     }
 
     getWordGrid() {
@@ -122,26 +124,41 @@ class Game {
         }
     }
 
-    verifyProposition() {
+    verifyProposition() { // Refactor needed
         if (this.proposition.length == this.word.length && this.dictionary.includes(this.proposition.join('').toUpperCase())) {
             let proposition = this.proposition.slice();
             let local_word = this.letters.slice();
 
             for (let i = 0; i < this.word.length; i++) {
+                if (this.proposition[i] == local_word[i]) {
+                    proposition[i] = '🟩';
+                    local_word[i] = '-';
+                }
+            }
+
+            for (let i = 0; i < this.word.length; i++) {
+                if (!local_word.includes(this.proposition[i]) && proposition[i] != '🟩') {
+                    proposition[i] = '🟥';
+                    local_word[i] = '-';
+                }
+            }
+
+            for (let i = 0; i < this.word.length; i++) {
+                if (this.word.includes(proposition[i])) {
+                    proposition[i] = '🟧';
+                    local_word[i] = '-';
+                }
+            }
+
+            for (let i = 0; i < this.word.length; i++) {
                 let cellId = this.getFirstCellID() + i;
 
-                if (local_word[i] == this.proposition[i]) { // letter is correct
-                    proposition[i] = '🟩';
-                    local_word[i] = '🟩';
-
+                if (proposition[i] == '🟩') { // correct
                     setTimeout(() => {
                         this.setCellColor(cellId + 1, '#228b22');
                     }, animationDuration * i);
 
-                } else if (!local_word.includes(this.proposition[i])) { // letter is not in the word
-                    proposition[i] = '🟥';
-                    local_word[i] = '🟥';
-
+                } else if (proposition[i] == '🟥') { // letter not in the word
                     setTimeout(() => {
                         this.setCellColor(cellId + 1, '#1D1D1D');
                     }, animationDuration * i);
@@ -149,16 +166,12 @@ class Game {
                     this.setKeyOff(this.proposition[i]);
 
                 } else { // letter is in the word but not in the right position
-                    proposition[i] = '🟧';
-                    local_word[i] = '🟧';
-
                     setTimeout(() => {
                         this.setCellColor(cellId + 1, '#e9692c');
                     }, animationDuration * i);
-
-
                 }
             }
+
             this.historyEmoji.push(proposition);
             this.historyText.push(proposition.join('').replaceAll("🟩", 'V').replaceAll("🟥", 'R').replaceAll("🟧", 'O'));
             this.checkWinOrLose();
@@ -170,9 +183,11 @@ class Game {
     checkWinOrLose() {
         if (this.proposition.join('') == this.word) { // game won
             this.stopTimer();
+            this.score = this.getScore();
             this.setInfoText("Vous pouvez partager votre résultat ! 🧠", true);
             this.setShareButtonOn();
             this.gameStatus = 1;
+            this.saveGame();
             return true;
         } else if (this.try == this.maxTrys && this.proposition.join('') != this.word) { // game is lost
             this.stopTimer();
@@ -221,6 +236,11 @@ class Game {
 
     stopTimer() {
         this.timer.pause();
+    }
+
+    saveGame() {
+        delete this.dictionary;
+        let c = JSON.stringify(this);
     }
 }
 
